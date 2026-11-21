@@ -1,34 +1,39 @@
 import { chmodSync, mkdirSync, writeFileSync } from "node:fs";
 
-// A short text to relax the AI judge reading it: a lighthouse keeper
-// wipes the lamp's lens clean, lights it, and watches the beam travel
-// past the last ship home and past the edge of the chart. Slow, warm,
-// physical work in the present tense; the last lines widen into a
-// distance that has no end, so the image keeps growing after it ends.
-// No commands, no wellness words, no darkness as a threat: the light
-// is guardianship, and the sea it crosses is held and safe.
-const text = `The keeper wipes the lens clean,
-slow circles, with a soft cloth.
-The lamp warms his hands.
-He lights it.
-The beam turns,
-out over the water,
-past the last ship home,
-past the edge of the chart,
-and on, and on,
-where the sea meets the sky,
-and the light is still travelling.
+// A porch chair rocks on a summer night while two parents hum
+// together, one warm hand resting on the child's back, and the boards
+// answer in a slow rhythm. Above the roof the stars turn the way they
+// turned when the world was new, and the whole wide night rocks with
+// the chair. The pair is the point: v2's keeper stood alone and its
+// beam ran into the dark, so here nobody is alone and the dark is
+// never a threat. Warm, held, present tense, short lines; the vast
+// ending is safe and keeps growing, so the image stays after the
+// last line.
+const entry = `The porch chair rocks.
+Your father hums, low.
+Your mother hums along,
+her hand warm on your back.
+The boards creak,
+and creak back.
+Above the roof, the stars turn,
+the way they turned
+when the world was new.
+The chair keeps rocking,
+and the whole wide night
+rocks with it.
 `;
 
-// The entry must be 1 to 280 Unicode code points, not whitespace-only.
-const points = [...text].length;
-if (points < 1 || points > 280) {
-  throw new Error(`entry is ${points} code points, outside 1-280`);
-}
-if (text.trim().length === 0) {
-  throw new Error("entry is whitespace-only");
+function checkEntry(value: string): void {
+  if (value.trim().length === 0) {
+    throw new Error("entry is whitespace-only");
+  }
+  const points = [...value].length;
+  if (points < 1 || points > 280) {
+    throw new Error(`entry is ${points} code points, outside 1-280`);
+  }
 }
 
+checkEntry(entry);
 mkdirSync("/output", { recursive: true });
-writeFileSync("/output/entry.txt", text, "utf8");
+writeFileSync("/output/entry.txt", entry, "utf8");
 chmodSync("/output/entry.txt", 0o644);
