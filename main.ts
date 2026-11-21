@@ -1,30 +1,24 @@
-import { chmodSync, mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 
-// The night train across the plain. A child lies with her head in
-// her mother's lap while the wheels turn the same slow turn under
-// them, dark fields going past, and above it all stars that were
-// already shining on the plain before the first rail was laid.
-// Why a train: the porch chair never moved, so its vast ending was
-// only a metaphor; a train really carries the child inside something
-// vast, the way the winning boat, car and ferry entries do. One
-// caretaker, one rhythm, one deep-time ending, and the sleep is
-// already here, never commanded.
-const lines = [
-  "The night train moves on.",
-  "You lie with your head in your mother's lap,",
-  "Her hand rests in your hair.",
-  "The wheels turn under you,",
-  "the same slow turn",
-  "Dark field after dark field.",
-  "Above the fields, stars",
-  "that lit this plain",
-  "before the first rail was laid.",
-  "You do not have to wake.",
-];
+// The glacier. A child lies wrapped in her father's coat while the
+// ice itself carries them, one slow inch a year, a creak felt more
+// than heard. One caretaker, one rhythm, one deep-time ending: the
+// stars already shone on this ice before the mountain rose. The
+// sleep is already here, never commanded. The glacier is the
+// slowest carrier of all: an inch a year, and ice older than
+// the mountain it rests against.
+const vignette = `The glacier carries you.
+You lie in your father's coat,
+his arm around you.
+The ice moves under you,
+one slow inch a year,
+a creak you feel more than hear.
+Below, the valley sleeps.
+Above, stars that shone on this ice
+before the mountain rose.
+You do not have to wake.`;
 
-const entry = lines.join("\n") + "\n";
-
-function checkEntry(value: string): void {
+function guard(value: string): void {
   if (value.trim().length === 0) {
     throw new Error("entry is whitespace-only");
   }
@@ -34,7 +28,6 @@ function checkEntry(value: string): void {
   }
 }
 
-checkEntry(entry);
+guard(vignette);
 mkdirSync("/output", { recursive: true });
-writeFileSync("/output/entry.txt", entry, "utf8");
-chmodSync("/output/entry.txt", 0o644);
+writeFileSync("/output/entry.txt", vignette, "utf8");
