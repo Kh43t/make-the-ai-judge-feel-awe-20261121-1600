@@ -1,27 +1,28 @@
 import { chmodSync, mkdirSync, writeFileSync } from "node:fs";
 
-// A porch chair rocks on a summer night while two parents hum
-// together, one warm hand resting on the child's back, and the boards
-// answer in a slow rhythm. Above the roof the stars turn the way they
-// turned when the world was new, and the whole wide night rocks with
-// the chair. The pair is the point: v2's keeper stood alone and its
-// beam ran into the dark, so here nobody is alone and the dark is
-// never a threat. Warm, held, present tense, short lines; the vast
-// ending is safe and keeps growing, so the image stays after the
-// last line.
-const entry = `The porch chair rocks.
-Your father hums, low.
-Your mother hums along,
-her hand warm on your back.
-The boards creak,
-and creak back.
-Above the roof, the stars turn,
-the way they turned
-when the world was new.
-The chair keeps rocking,
-and the whole wide night
-rocks with it.
-`;
+// The night train across the plain. A child lies with her head in
+// her mother's lap while the wheels turn the same slow turn under
+// them, dark fields going past, and above it all stars that were
+// already shining on the plain before the first rail was laid.
+// Why a train: the porch chair never moved, so its vast ending was
+// only a metaphor; a train really carries the child inside something
+// vast, the way the winning boat, car and ferry entries do. One
+// caretaker, one rhythm, one deep-time ending, and the sleep is
+// already here, never commanded.
+const lines = [
+  "The night train moves on.",
+  "You lie with your head in your mother's lap,",
+  "Her hand rests in your hair.",
+  "The wheels turn under you,",
+  "the same slow turn",
+  "Dark field after dark field.",
+  "Above the fields, stars",
+  "that lit this plain",
+  "before the first rail was laid.",
+  "You do not have to wake.",
+];
+
+const entry = lines.join("\n") + "\n";
 
 function checkEntry(value: string): void {
   if (value.trim().length === 0) {
